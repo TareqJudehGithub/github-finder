@@ -1,0 +1,24 @@
+JSX:
+ HTML AND CSS like.
+
+ JSX must have 1 parent element.
+
+ES7 React extension shortcuts:
+
+rce : creates a React class component
+impt: calls PropTypes
+========================
+
+Passing Props
+
+1. static method:
+Instead of passing types to the imported component, we just type a static method
+in the component it self:
+
+static defaultProps = {
+          icon: "fab fa-github",
+          title: "Github finder"
+     }
+
+2 PropTypes:
+
