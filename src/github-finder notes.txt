@@ -21,4 +21,30 @@ static defaultProps = {
      }
 
 2 PropTypes:
+PropTypes checks all components.
 
+Inside a CLASS component:
+
+import PropTypes from "prop-types"
+
+static propTypes = {
+     title: propTypes.string.isRequired,
+     icon: propTypes.string,isRequired
+}
+
+In a STATELESS component:
+
+import PropTypes from "prop-types"
+
+Now, outside the component scope:
+
+ComponentName.propTypes = {
+     title: propTypes.string.isRequired,
+     icon: propTypes.string,isRequired
+}
+
+component-level state vs app-level state:
+a component-level state resides inside the component itself, while
+an app-level state resides in App.js
+
+.map is a high order array method.
