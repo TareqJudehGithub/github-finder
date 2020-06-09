@@ -6,7 +6,14 @@ JSX:
 ES7 React extension shortcuts:
 
 rce : creates a React class component
+racf: calls a functional component.
+
 impt: calls PropTypes
+ptor: calls PropTypes.object.isRequired,
+ptsr: calls PropTypes.string.isRequired,
+ptar: calls an array, 
+..et
+
 ========================
 
 Passing Props
