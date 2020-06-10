@@ -15,7 +15,7 @@ const Users = ({ users, loading }) => {
                         <Spinner />
                         :
                         users
-                        .slice(0, 6)
+                    //     .slice(0, 6)
                         .map(user => 
                          <UserItem 
                          key={user.id}

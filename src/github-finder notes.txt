@@ -55,3 +55,17 @@ a component-level state resides inside the component itself, while
 an app-level state resides in App.js
 
 .map is a high order array method.
+
+Async
+
+for functions, we place async right before the func name
+
+async componentDidMount() => {
+
+}
+
+for arrow functions, we place async right before the function parameters
+
+searchUsers = async (event) => {
+     
+}
