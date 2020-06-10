@@ -219,6 +219,11 @@ img {
   display: block;
   width: 100%;
 }
+.btn-clear {
+  box-shadow: 0 0 5px salmon;
+}.btn-clear:hover {
+  font-weight: 1000;
+}
 
 .btn-sm {
   font-size: 0.8rem;

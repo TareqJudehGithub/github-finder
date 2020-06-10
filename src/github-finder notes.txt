@@ -3,18 +3,7 @@ JSX:
 
  JSX must have 1 parent element.
 
-ES7 React extension shortcuts:
 
-rce : creates a React class component
-racf: calls a functional component.
-
-impt: calls PropTypes
-ptor: calls PropTypes.object.isRequired,
-ptsr: calls PropTypes.string.isRequired,
-ptar: calls an array, 
-..et
-
-========================
 
 Passing Props
 
@@ -67,5 +56,25 @@ async componentDidMount() => {
 for arrow functions, we place async right before the function parameters
 
 searchUsers = async (event) => {
-     
+
 }
+
+
+===================================
+ES7 React extension shortcuts:
+
+rce : creates a React class component
+racf: calls a functional component.
+
+impt: calls PropTypes
+ptor: calls PropTypes.object.isRequired,
+ptsr: calls PropTypes.string.isRequired,
+ptar: calls an array, 
+..et
+
+========================
+
+
+Routeing
+
+installation

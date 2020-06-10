@@ -15,12 +15,12 @@ const Users = ({ users, loading }) => {
                         <Spinner />
                         :
                         users
-                    //     .slice(0, 6)
-                        .map(user => 
-                         <UserItem 
-                         key={user.id}
-                         user={user}
-                         />
+                         .slice(0, 30)
+                         .map(user => 
+                              <UserItem 
+                              key={user.id}
+                              user={user}
+                              />
                          )
                    } 
                </div>
