@@ -6,6 +6,7 @@ class Search extends Component {
      state = {
           text: ""
      }
+
      onChange = event => {
           const { name, value } = event.target;
           this.setState({ [name]: value})
@@ -18,7 +19,8 @@ class Search extends Component {
           }
           else{
                this.props.searchUsers(this.state.text);
-               this.setState({ text: ""});          
+               this.setState({ text: ""});
+               console.log(this.state.text)          
           }      
      }
 
@@ -37,24 +39,26 @@ class Search extends Component {
                               value={this.state.text} 
                               placeholder="search users.."
                               onChange={this.onChange}
-                         />
-                         <input  
-                              type="submit" 
-                              value="search"
-                              className="btn btn-dark btn-block"
-                         />
-                    </form>
+                         />                 
                     {
-                         showClear
-                         &&
+                         showClear & this.state.text.length === 0
+                         ?
                          <button 
                          className="btn btn-light btn-block btn-clear"
                          onClick={clearUsers}
                          > 
-                         Clear
+                         Clear Github users list
                          </button>
+                         :      
+                         <input  
+                              type="submit" 
+                              value="Search Github users"
+                              className="btn btn-dark btn-block"
+                         />
                     }
-                  
+
+                    </form>
+            
                </div>
           )
      };

@@ -1,6 +1,7 @@
 import React from 'react';
 import Navbar from "./components/layout/Navbar";
 import Users from "./components/users/Users";
+import SingleUser from "./components/users/SingleUser";
 import Search from "./components/users/Search";
 import Alert from "./components/layout/Alert";
 import About from './components/pages/About'
@@ -12,24 +13,46 @@ class App extends React.Component {
  
   state = {
     users: [],
+    user: {},
     loading: false,
     alert: null
   }
- 
-  searchUsersHandler = async (text) => {  //text state in Search.jsx
+  
+//handlers:
+  //Search Github users:
+  searchUsersHandler = async (users) => {  
+
     this.setState({ loading: true})
+
     const response = await axios
-    .get(`https://api.github.com/search/users?q=${text}&client_id=
+    .get(`https://api.github.com/search/users?q=${users}&client_id=
       ${process.env.REACT_APP_GITHUB_CLIENT_ID}&client_secret=
-      ${process.env.REACT_APP_GITHUB_CLIENT_SECRET}`)
+      ${process.env.REACT_APP_GITHUB_CLIENT_SECRET}`
+      );
 
     this.setState({
-      users: response.data.items,
+      users: response.data.items,   //.items only for search results
       loading: false,
       alert: null
     })
   };
+  //Get single Github user:
+  getUser = async (login) => {
 
+    this.setState({ loading: true})
+
+    const response = await axios
+    .get(`https://api.github.com/users/${login}?client_id=
+    ${process.env.REACT_APP_GITHUB_CLIENT_ID}&client_secret=
+    ${process.env.REACT_APP_GITHUB_CLIENT_SECRET}`
+    );
+    this.setState({
+      user: response.data,
+      loading: false
+      })
+  };
+
+  //Clears Github users search result
   clearUsersHandler = () => {
     this.setState({
        users: [],
@@ -37,15 +60,15 @@ class App extends React.Component {
         alert: null
       })
   };
-
+  //Alerts upon submission with no input data:
   setAlertHandler = (msg, type) => {
     this.setState({ alert: { msg, type } });
   };
  
   render() {
 
-    const { users, loading } = this.state;
-
+    const { users, user, loading } = this.state;
+   
     return (
     
          <div className="App">
@@ -62,22 +85,29 @@ class App extends React.Component {
                   showClear={users.length > 0 ? true : false}
                   setAlert={this.setAlertHandler}
                   />
-
+                  
                   <Users
                   loading={loading}
                   users={users}
                   />
               </React.Fragment>
-            )}/>
+              )}
+            />
             <Route exact path="/about" component={About}/>
+            <Route exact path="/user/:login" 
+              render={props => (
+                <SingleUser 
+                  { ...props } 
+                  getUser={this.getUser} 
+                  user={user}
+                  loading={loading}
+                />
+            )}/>
           </Switch>   
         </div>
       </div>
-      
-     
     );
   }
-  
 }
 
 export default App;
