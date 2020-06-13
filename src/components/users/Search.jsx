@@ -18,9 +18,9 @@ class Search extends Component {
                this.props.setAlert("Please enter some text", 'light');
           }
           else{
-               this.props.searchUsers(this.state.text);
-               this.setState({ text: ""});
-               console.log(this.state.text)          
+               this.props.searchUsers(this.state.text); //passing (sending prop up) text state to App.js
+               this.setState({ text: ""});                       
+                 
           }      
      }
 

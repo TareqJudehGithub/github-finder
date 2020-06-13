@@ -72,6 +72,19 @@ ptsr: calls PropTypes.string.isRequired,
 ptar: calls an array, 
 ..et
 
+Github Rest API
+
+https://developer.github.com/v3/search/#search-code
+
+? for the 1st query
+& for the 2nd query
+q for query search 
+
+repos?per_page=5&sort=created:asc is Githut API for customizing # of repos displayed:
+repos repos
+per_page=5  No. of items displayed (5 repos)
+sort=created:asc   sort top 5 in an ascending order  (top to bottom based on created date).
+
 ========================
 
 

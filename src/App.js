@@ -14,18 +14,19 @@ class App extends React.Component {
   state = {
     users: [],
     user: {},
+    repos: [],
     loading: false,
     alert: null
   }
   
 //handlers:
-  //Search Github users:
-  searchUsersHandler = async (users) => {  
+  //Search Github users:   //api.github/search/users?q={prop}
+  searchUsersHandler = async (text) => {  
 
     this.setState({ loading: true})
 
     const response = await axios
-    .get(`https://api.github.com/search/users?q=${users}&client_id=
+    .get(`https://api.github.com/search/users?q=${text}&client_id=
       ${process.env.REACT_APP_GITHUB_CLIENT_ID}&client_secret=
       ${process.env.REACT_APP_GITHUB_CLIENT_SECRET}`
       );
@@ -36,23 +37,39 @@ class App extends React.Component {
       alert: null
     })
   };
-  //Get single Github user:
-  getUser = async (login) => {
+  //Get single Github user:  //api.github/users/username
+  getUser = async (username) => {
 
     this.setState({ loading: true})
 
     const response = await axios
-    .get(`https://api.github.com/users/${login}?client_id=
+    .get(`https://api.github.com/users/${username}?client_id=
     ${process.env.REACT_APP_GITHUB_CLIENT_ID}&client_secret=
     ${process.env.REACT_APP_GITHUB_CLIENT_SECRET}`
     );
     this.setState({
-      user: response.data,
+      user: response.data,   //.data only for a user
       loading: false
       })
   };
 
-  //Clears Github users search result
+  //get users repos:  //api.github.com/users/username/repos
+  getUserRepos = async (username) => {
+    this.setState({ loading: true})
+
+    const response = await axios
+    .get(`https://api.github.com/users/${username}/repos?per_page=5&sort=created:asc&client_id=
+    ${process.env.REACT_APP_GITHUB_CLIENT_ID}&client_secret=
+    ${process.env.REACT_APP_GITHUB_CLIENT_SECRET}`
+    );
+    
+    this.setState({
+      repos: response.data,
+      loading: false
+    })
+  }
+  
+  //Clears Github users search result.
   clearUsersHandler = () => {
     this.setState({
        users: [],
@@ -67,7 +84,7 @@ class App extends React.Component {
  
   render() {
 
-    const { users, user, loading } = this.state;
+    const { users, user, repos, loading } = this.state;
    
     return (
     
@@ -100,6 +117,8 @@ class App extends React.Component {
                   { ...props } 
                   getUser={this.getUser} 
                   user={user}
+                  getUserRepos={this.getUserRepos}
+                  repos={repos}
                   loading={loading}
                 />
             )}/>
@@ -111,32 +130,3 @@ class App extends React.Component {
 }
 
 export default App;
-
-
-
- // async componentDidMount() {
-   
-  //   this.setState({ loading: true});
-
-  //   const response = await axios
-  //   .get(`https://api.github.com/users?client_id=
-  //     ${process.env.REACT_APP_GITHUB_CLIENT_ID}&client_secret=
-  //     ${process.env.REACT_APP_GITHUB_CLIENT_SECRET}`);
-
-  //   this.setState({
-  //     users: response.data,
-  //     loading: false
-  //   });
-  // }
-
-  
-
-/*  
-  // searchInputHandler = (event) => {
-  //   this.setState({ text: event.target.value })
-  // }
-
- searchState={this.state.text}
-searchInput={this.searchInputHandler}
-
-*/

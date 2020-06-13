@@ -7,8 +7,7 @@ const Users = ({ users, loading }) => {
     
           return (
                
-               <div style={userStyle}>
-
+               <div className="grid-4">
                    {
                         loading
                         ?
@@ -27,11 +26,7 @@ const Users = ({ users, loading }) => {
           )
 }
 
-const userStyle = {
-     display: "grid",
-     gridTemplateColumns: "repeat(3, 1fr)",
-     gridGap: "1rem"
-}
+
 Users.prototype = {
      users: PropTypes.array.isRequired,
      loading: PropTypes.bool.isRequired
