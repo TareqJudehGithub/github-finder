@@ -21,7 +21,7 @@ class SingleUser extends React.Component {
           return (
              
                <React.Fragment>
-                 <Link to="/" className="btn btn-light">Back</Link>
+                 <Link to="/" className="btn btn-light">&#10094; Back</Link>
                     {
                          loading 
                          ? 

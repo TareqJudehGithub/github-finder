@@ -44,10 +44,10 @@ class Search extends Component {
                          showClear & this.state.text.length === 0
                          ?
                          <button 
-                         className="btn btn-light btn-block btn-clear"
+                         className="btn btn-dark btn-block"
                          onClick={clearUsers}
                          > 
-                         Clear Github users list
+                         Clear list
                          </button>
                          :      
                          <input  
