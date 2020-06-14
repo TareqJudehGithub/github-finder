@@ -56,7 +56,6 @@ class Search extends Component {
                               className="btn btn-dark btn-block"
                          />
                     }
-
                     </form>
             
                </div>
