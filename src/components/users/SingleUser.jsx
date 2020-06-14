@@ -30,15 +30,20 @@ class SingleUser extends React.Component {
                          <div>
                               <div className="card grid-2">
                                    <div className="all-center">
+
                                         <img src={avatar_url} alt="avatar"
                                              className="round-img"
                                         style={{width: "150px"}}
                                         />
-                                        <h2>{name}</h2>
+
+                                        <h2>{login}</h2> 
+                                        
                                         <p>{location}</p>
                                    </div>
                                    <div>
-                                        <p style={{margin:"1em 0"}}><strong>Username: </strong> {login}</p>
+                                        <p style={{margin:"0.5em 0"}}>
+                                             <strong>Name: </strong> {name}
+                                        </p>
                                         {
                                              bio
                                              && 

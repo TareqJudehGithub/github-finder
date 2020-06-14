@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import PropTypes from "prop-types";
 
 
+
 class Search extends Component {
      state = {
           text: ""
@@ -32,14 +33,13 @@ class Search extends Component {
                     <form 
                          className="form"
                          onSubmit={this.onSubmit}>
-                         <input 
-                         
+                         <input     
                               type="text" 
-                              name="text"
+                              name="text"       
                               value={this.state.text} 
                               placeholder="search users.."
                               onChange={this.onChange}
-                         />                 
+                         />   
                     {
                          showClear & this.state.text.length === 0
                          ?

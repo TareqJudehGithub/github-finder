@@ -6,14 +6,14 @@ const RepoItem = ({ repo }) => {
      const { html_url, name } = repo;
      return (
           <div>
-               <h3>
+               <p>
                     <a 
-                         style={{color: "black"}} 
+                         style={{color: "black", fontWeight: 500}} 
                          href={html_url}
                          >
                               {name}
                          </a>
-               </h3>
+               </p>
           </div>
      )
 }
