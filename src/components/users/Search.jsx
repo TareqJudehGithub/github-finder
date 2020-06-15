@@ -1,51 +1,51 @@
-import React, { Component } from 'react'
-import PropTypes from "prop-types";
+import React, { useState, useContext } from 'react';
+
+import GithubContext from "../../context/github/githubContext";
+import AlertContext from "../../context/alert/alertContext";
+
+const Search = ( ) => {
+     
+     const githubContext = useContext(GithubContext);
+     const alertContext = useContext(AlertContext);
+     const { searchUsersHandler, users, clearUsersHandler } = githubContext;
+     const [text, setText] = useState("");
 
 
-
-class Search extends Component {
-     state = {
-          text: ""
+     const onChange = event => {    
+          setText(event.target.value);
      }
 
-     onChange = event => {
-          const { name, value } = event.target;
-          this.setState({ [name]: value})
-     }
-     onSubmit = event => {
+     const onSubmit = event => {
           event.preventDefault();
 
-          if( this.state.text === ""){
-               this.props.setAlert("Please enter some text", 'light');
+          if( text === ""){
+               alertContext.setAlertHandler("No input data were entered.", 'light');        
           }
           else{
-               this.props.searchUsers(this.state.text); //passing (sending prop up) text state to App.js
-               this.setState({ text: ""});                       
-                 
+               searchUsersHandler(text); 
+               setText("");
           }      
      }
-
-     render() {
-
-          const { clearUsers, showClear } = this.props;
           return (
                <div className="form">
-                    <form 
+                   
+                         <form 
                          className="form"
-                         onSubmit={this.onSubmit}>
-                         <input     
+                         onSubmit={onSubmit}>
+                         
+                              <input     
                               type="text" 
                               name="text"       
-                              value={this.state.text} 
+                              value={text} 
                               placeholder="search users.."
-                              onChange={this.onChange}
+                              onChange={onChange}
                          />   
                     {
-                         showClear & this.state.text.length === 0
+                         users.length && text.length === 0
                          ?
                          <button 
                          className="btn btn-dark btn-block"
-                         onClick={clearUsers}
+                         onClick={clearUsersHandler}
                          > 
                          Clear list
                          </button>
@@ -57,20 +57,9 @@ class Search extends Component {
                          />
                     }
                     </form>
-            
+                    
                </div>
           )
-     };
-     static propTypes = {
-          searchUsers: PropTypes.func.isRequired,
-          clearUsers: PropTypes.func.isRequired,
-          showClear: PropTypes.bool.isRequired,
-          setAlert: PropTypes.func.isRequired,
-         
-     };
 };
+
 export default Search
-
-
-   // searchState: PropTypes.string.isRequired,
-          // searchInput: PropTypes.func.isRequired,

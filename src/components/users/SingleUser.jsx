@@ -1,23 +1,26 @@
-import React from 'react'
+import React, { useEffect, useContext } from 'react';
 import Repos from "../Repos/Repos";
 import Spinner from "../layout/Spinner";
-import PropTypes from "prop-types";
 import {Link} from "react-router-dom";
+import GithubContext from "../../context/github/githubContext";
 
-class SingleUser extends React.Component { 
+const SingleUser = ({ match }) => { 
 
-     componentDidMount()  {
-          this.props.getUser(this.props.match.params.login)  //.login is coming from :/login from app.js
-          this.props.getUserRepos(this.props.match.params.login)
-     }
-     render() {
-       
+     const githubContext = useContext(GithubContext);
+     const { getUser, user, loading, repos, getUserRepos } = githubContext;
+
+     useEffect(() => {
+          getUser(match.params.login);
+          getUserRepos(match.params.login);
+          //to remove the useEffect() warning, include this commented line below:
+
+          // eslint-disable-next-line  
+     }, []);
           const {
                name, avatar_url, location, bio, blog, login, html_url, company,
                followers, following, public_repos, public_gists, 
-          } = this.props.user
-          const { loading, repos } = this.props;
-     
+          } = user
+       
           return (
              
                <React.Fragment>
@@ -77,7 +80,7 @@ class SingleUser extends React.Component {
                                                   }
                                              </li>
                                         </ul>
-                                        <a href={html_url} 
+                                        <a href={html_url} target="_blank" rel="noopener noreferrer"
                                         className="btn btn-dark my-1"> {/* margin top&bottom*/}
                                         Profile
                                         </a>  
@@ -103,14 +106,6 @@ class SingleUser extends React.Component {
                     <Repos repos={repos}/>
                </React.Fragment>
           )
-     }
-     static propTypes = {
-          loading: PropTypes.bool.isRequired,
-          user: PropTypes.object.isRequired,
-          getUser: PropTypes.func.isRequired,
-          repos: PropTypes.array.isRequired,
-          getUserRepos: PropTypes.func.isRequired
-     }
 }
 
 export default SingleUser;
