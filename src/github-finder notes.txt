@@ -64,7 +64,7 @@ searchUsers = async (event) => {
 ES7 React extension shortcuts:
 
 rce : creates a React class component
-racf: calls a functional component.
+racfe: calls a functional component.
 
 impt: calls PropTypes
 ptor: calls PropTypes.object.isRequired,
@@ -135,3 +135,13 @@ export default GithubState;
 
 NOTE:  We use render={ () => { }}  in routing in case we needed to pass props or 
 render more than 1 component in the same path, or set a conditional.
+
+Example:
+ <Route exact path="/" render={props => ( //rending more than 1 component.
+                  <React.Fragment>
+                    <Search /> 
+                    
+                    <Users />
+                  </React.Fragment>
+                  )}
+                />

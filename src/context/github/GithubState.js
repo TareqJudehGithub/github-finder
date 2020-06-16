@@ -32,12 +32,11 @@ const GithubState = props => {
           ${process.env.REACT_APP_GITHUB_CLIENT_ID}&client_secret=
           ${process.env.REACT_APP_GITHUB_CLIENT_SECRET}`
           );
-
           dispatch({
                type: SEARCH_USERS,
-               payload: response.data.items, //.items only for search results
-             
-     })
+               
+               payload: response.data.items //.items only for search results
+          })
    };
 
    

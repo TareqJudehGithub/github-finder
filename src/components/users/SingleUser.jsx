@@ -12,6 +12,7 @@ const SingleUser = ({ match }) => {
      useEffect(() => {
           getUser(match.params.login);
           getUserRepos(match.params.login);
+          
           //to remove the useEffect() warning, include this commented line below:
 
           // eslint-disable-next-line  

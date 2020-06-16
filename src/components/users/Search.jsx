@@ -10,7 +10,6 @@ const Search = ( ) => {
      const { searchUsersHandler, users, clearUsersHandler } = githubContext;
      const [text, setText] = useState("");
 
-
      const onChange = event => {    
           setText(event.target.value);
      }
@@ -21,18 +20,19 @@ const Search = ( ) => {
           if( text === ""){
                alertContext.setAlertHandler("No input data were entered.", 'light');        
           }
-          else{
+          else{ 
                searchUsersHandler(text); 
-               setText("");
-          }      
+               setText("");    
+          }    
      }
+
           return (
                <div className="form">
                    
                          <form 
                          className="form"
                          onSubmit={onSubmit}>
-                         
+             
                               <input     
                               type="text" 
                               name="text"       
@@ -41,7 +41,7 @@ const Search = ( ) => {
                               onChange={onChange}
                          />   
                     {
-                         users.length && text.length === 0
+                         users.length && text === ""
                          ?
                          <button 
                          className="btn btn-dark btn-block"
